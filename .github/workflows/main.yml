@@ -1,0 +1,9 @@
+name: Unity
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
