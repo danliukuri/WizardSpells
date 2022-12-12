@@ -7,3 +7,10 @@ jobs:
     name: Test
     uses: ./.github/workflows/test.yml
     secrets: inherit
+  build:
+    name: Build
+    needs: test
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+    with:
+      projectName: "WizardSpells"
