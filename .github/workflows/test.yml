@@ -1,0 +1,77 @@
+# Cache reusing
+# Workflow runs can restore caches created in either the current branch or the default branch
+# More cache restrictions:
+#   * https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#restrictions-for-accessing-a-cache
+
+name: Test
+
+on: 
+  workflow_call:
+    inputs:
+      projectPath:
+        required: false
+        default: ./
+        type: string
+
+jobs:
+  test-all-modes:
+    name: ${{ matrix.testMode }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testMode:
+          - Playmode
+          - Editmode
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v3
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-Lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-Lfs-
+            ${{ runner.os }}-
+
+      - name: Git LFS pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      - name: Restore library cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ inputs.projectPath }}/Library
+          key: Library-Test
+          restore-keys: |
+            Library-
+
+      - name: Test
+        uses: game-ci/unity-test-runner@v2.1.1
+        id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: ${{ inputs.projectPath }}
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: tests/${{ matrix.testMode }}/artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Test Results ${{ matrix.testMode }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: TestResults${{ matrix.testMode }} 
+          path: ${{ steps.tests.outputs.artifactsPath }}

@@ -1,0 +1,29 @@
+name: Unity License Activation
+
+on: [workflow_dispatch]
+
+jobs:
+  get-activation-file:
+    name: Get Manual Activation File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+
+      - name: Upload artifact (Unity_v20X...X.alf)
+        uses: actions/upload-artifact@v2
+        with:
+          name: ManualUnityLicenseActivationFile
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+  
+  get-activation-link:
+    name: Get Activation Link
+    needs: get-activation-file
+    runs-on: ubuntu-latest
+    environment:
+      name: Develop
+      url: https://license.unity3d.com/manual
+    steps:
+      - name: Echo link
+        run: echo "https://license.unity3d.com/manual"
