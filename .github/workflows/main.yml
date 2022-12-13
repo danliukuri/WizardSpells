@@ -14,3 +14,10 @@ jobs:
     secrets: inherit
     with:
       projectName: "WizardSpells"
+  deploy:
+    name: Deploy
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      projectName: "WizardSpells"
