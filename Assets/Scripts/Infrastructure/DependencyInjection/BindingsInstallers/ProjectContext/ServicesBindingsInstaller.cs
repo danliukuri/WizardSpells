@@ -1,7 +1,7 @@
-using Services.SceneManagement;
+using WizardSpells.Services.SceneManagement;
 using Zenject;
 
-namespace Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
+namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
 {
     public class ServicesBindingsInstaller : MonoInstaller
     {

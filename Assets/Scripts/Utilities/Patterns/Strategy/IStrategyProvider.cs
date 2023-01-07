@@ -1,4 +1,4 @@
-namespace Utilities.Patterns.Strategy
+namespace WizardSpells.Utilities.Patterns.Strategy
 {
     public interface IStrategyProvider<out TStrategy, in TStrategyKey> where TStrategy : IStrategy
     {

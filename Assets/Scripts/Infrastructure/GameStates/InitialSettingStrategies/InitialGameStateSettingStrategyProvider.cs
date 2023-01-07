@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Data.Scene;
-using Utilities.Patterns.Strategy;
+using WizardSpells.Data.Scene;
+using WizardSpells.Utilities.Patterns.Strategy;
 
-namespace Infrastructure.GameStates.InitialSettingStrategies
+namespace WizardSpells.Infrastructure.GameStates.InitialSettingStrategies
 {
     public class InitialGameStateSettingStrategyProvider : IStrategyProvider<StateSettingStrategy, SceneName>
     {

@@ -1,4 +1,4 @@
-namespace Utilities.Patterns.State.Machines
+namespace WizardSpells.Utilities.Patterns.State.Machines
 {
     public interface IStateMachine : IStateRegistrar<IState>
     {

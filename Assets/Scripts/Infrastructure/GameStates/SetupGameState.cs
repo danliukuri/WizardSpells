@@ -1,7 +1,7 @@
 using UnityEngine;
-using Utilities.Patterns.State;
+using WizardSpells.Utilities.Patterns.State;
 
-namespace Infrastructure.GameStates
+namespace WizardSpells.Infrastructure.GameStates
 {
     public class SetupGameState : IEnterableState
     {

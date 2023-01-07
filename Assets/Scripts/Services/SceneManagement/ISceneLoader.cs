@@ -1,14 +1,14 @@
 using System;
-using Data.Scene;
 using UnityEngine;
+using WizardSpells.Data.Scene;
 
-namespace Services.SceneManagement
+namespace WizardSpells.Services.SceneManagement
 {
     public interface ISceneLoader
     {
         SceneName CurrentSceneName { get; }
         AsyncOperation LoadingOperation { get; }
 
-        void Load(SceneName sceneName, Action onLoaded = default);
+        AsyncOperation Load(SceneName sceneName, Action onLoaded = default);
     }
 }

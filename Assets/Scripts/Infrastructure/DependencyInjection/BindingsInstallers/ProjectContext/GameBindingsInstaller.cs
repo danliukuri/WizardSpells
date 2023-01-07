@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Infrastructure.GameStates;
-using Infrastructure.GameStates.InitialSettingStrategies;
-using Utilities.Patterns.State.Machines;
+using WizardSpells.Infrastructure.GameStates;
+using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
+using WizardSpells.Utilities.Patterns.State.Machines;
 using Zenject;
 
-namespace Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
+namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
 {
     public class GameBindingsInstaller : MonoInstaller
     {

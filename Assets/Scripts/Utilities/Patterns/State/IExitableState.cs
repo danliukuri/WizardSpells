@@ -1,6 +1,6 @@
-namespace Utilities.Patterns.State
+namespace WizardSpells.Utilities.Patterns.State
 {
-    public interface IExitableState
+    public interface IExitableState : IState
     {
         void Exit();
     }

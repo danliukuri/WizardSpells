@@ -1,4 +1,4 @@
-namespace Utilities.Patterns.State
+namespace WizardSpells.Utilities.Patterns.State
 {
     public interface IEnterableState : IState
     {

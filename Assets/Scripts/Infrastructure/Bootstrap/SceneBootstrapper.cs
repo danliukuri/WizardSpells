@@ -1,10 +1,10 @@
-using Data.Scene;
-using Services.SceneManagement;
 using UnityEngine;
-using Utilities.Patterns.Strategy;
+using WizardSpells.Data.Scene;
+using WizardSpells.Services.SceneManagement;
+using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;
 
-namespace Infrastructure.Bootstrap
+namespace WizardSpells.Infrastructure.Bootstrap
 {
     public class SceneBootstrapper : MonoBehaviour
     {

@@ -1,6 +1,6 @@
-using Utilities.Patterns.State.Machines;
+using WizardSpells.Utilities.Patterns.State.Machines;
 
-namespace Utilities.Patterns.Strategy
+namespace WizardSpells.Utilities.Patterns.Strategy
 {
     public abstract class StateSettingStrategy : IStrategy
     {

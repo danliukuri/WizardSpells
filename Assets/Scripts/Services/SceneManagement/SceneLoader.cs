@@ -1,9 +1,9 @@
 using System;
-using Data.Scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WizardSpells.Data.Scene;
 
-namespace Services.SceneManagement
+namespace WizardSpells.Services.SceneManagement
 {
     public class SceneLoader : ISceneLoader
     {
@@ -12,14 +12,15 @@ namespace Services.SceneManagement
 
         public AsyncOperation LoadingOperation { get; private set; }
 
-        public void Load(SceneName sceneName, Action onLoaded = default)
+        public AsyncOperation Load(SceneName sceneName, Action onLoaded = default)
         {
             LoadingOperation = SceneManager.LoadSceneAsync(sceneName.ToString());
-            CurrentSceneName = sceneName;
             LoadingOperation.completed += OnLoadingCompleted;
-
+            return LoadingOperation;
+            
             void OnLoadingCompleted(AsyncOperation loadingOperation)
             {
+                CurrentSceneName = sceneName;
                 onLoaded?.Invoke();
                 LoadingOperation.completed -= OnLoadingCompleted;
             }

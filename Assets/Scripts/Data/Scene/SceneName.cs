@@ -1,4 +1,4 @@
-namespace Data.Scene
+namespace WizardSpells.Data.Scene
 {
     public enum SceneName
     {

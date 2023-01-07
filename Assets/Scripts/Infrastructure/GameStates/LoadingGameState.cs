@@ -1,9 +1,9 @@
-using Data.Scene;
-using Services.SceneManagement;
 using UnityEngine;
-using Utilities.Patterns.State;
+using WizardSpells.Data.Scene;
+using WizardSpells.Services.SceneManagement;
+using WizardSpells.Utilities.Patterns.State;
 
-namespace Infrastructure.GameStates
+namespace WizardSpells.Infrastructure.GameStates
 {
     public class LoadingGameState : IEnterableState<SceneName>
     {

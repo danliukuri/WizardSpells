@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Utilities.Patterns.State.Machines
+namespace WizardSpells.Utilities.Patterns.State.Machines
 {
     public class StateMachine : IStateMachine
     {

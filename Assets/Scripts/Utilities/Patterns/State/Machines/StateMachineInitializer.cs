@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Utilities.Patterns.State.Machines
+namespace WizardSpells.Utilities.Patterns.State.Machines
 {
     public class StateMachineInitializer : IInitializable
     {
