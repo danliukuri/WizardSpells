@@ -1,10 +1,14 @@
 using System;
+using System.Linq;
 using NSubstitute;
 using UnityEngine;
 using WizardSpells.Data.Configuration;
+using WizardSpells.Data.Scene;
 using WizardSpells.Infrastructure.Factories.Component;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
+using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.State.Machines;
+using WizardSpells.Utilities.Patterns.Strategy;
 
 namespace WizardSpells.Tests.EditMode
 {
@@ -13,12 +17,10 @@ namespace WizardSpells.Tests.EditMode
         public static InitialGameStateSettingMainSceneStrategy InitialGameStateSettingMainSceneStrategy(
             IStateMachine gameStateMachine = default) => new(gameStateMachine);
 
-        public static InitialGameStateSettingStrategyProvider InitialGameStateSettingStrategyProvider(
-            InitialGameStateSettingDefaultStrategy defaultStrategy = default,
-            InitialGameStateSettingBootstrapSceneStrategy bootstrapSceneStrategy = default,
-            InitialGameStateSettingMainSceneStrategy mainSceneStrategy = default) =>
-            Substitute.For<InitialGameStateSettingStrategyProvider>(defaultStrategy, bootstrapSceneStrategy,
-                mainSceneStrategy);
+        public static SceneStrategyProvider SceneStrategyProvider(IStrategy defaultStrategy = default, 
+            params (SceneName SceneName, IStrategy Instance)[] strategies) =>
+            Substitute.For<SceneStrategyProvider>(strategies
+                .ToDictionary(strategy => strategy.SceneName, strategy => strategy.Instance), defaultStrategy);
 
         public static GameObject NewGameObject(params Type[] componentTypesToAttach)
         {
