@@ -5,7 +5,7 @@ using Zenject;
 
 namespace WizardSpells.Infrastructure.Factories.Component
 {
-    internal class ComponentPoolFactory<TComponent> : IFactory<ObjectPool<TComponent>>, IInitializable
+    public class ComponentPoolFactory<TComponent> : IFactory<ObjectPool<TComponent>>, IInitializable
         where TComponent : UnityEngine.Component
     {
         private readonly List<ObjectPool<TComponent>> _createdPools = new();

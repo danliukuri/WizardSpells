@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObjectsParent: {fileID: 4095000092789820297}
-  poolConfig: {fileID: 11400000, guid: 1cbf2855f907ce5459a612cc6f573f65, type: 2}
   factoryConfig: {fileID: 11400000, guid: 094a8a9ac038b3943b73efcb0cd72a69, type: 2}
+  poolConfig: {fileID: 11400000, guid: 1cbf2855f907ce5459a612cc6f573f65, type: 2}
 --- !u!1 &8488318072809069484
 GameObject:
   m_ObjectHideFlags: 0
