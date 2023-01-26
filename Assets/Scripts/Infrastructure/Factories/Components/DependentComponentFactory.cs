@@ -3,10 +3,9 @@ using WizardSpells.Data.Configuration;
 using WizardSpells.Utilities.Extensions.Unity;
 using Zenject;
 
-namespace WizardSpells.Infrastructure.Factories.Component
+namespace WizardSpells.Infrastructure.Factories.Components
 {
-    public class DependentComponentFactory<TComponent> : ComponentFactory<TComponent>
-        where TComponent : UnityEngine.Component
+    public class DependentComponentFactory<TComponent> : ComponentFactory<TComponent> where TComponent : Component
     {
         private readonly DiContainer _diContainer;
 

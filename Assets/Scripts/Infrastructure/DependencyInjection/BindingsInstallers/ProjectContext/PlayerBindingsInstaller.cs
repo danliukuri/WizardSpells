@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using WizardSpells.Data.Configuration;
 using WizardSpells.Features.Player;
-using WizardSpells.Infrastructure.Factories.Component;
+using WizardSpells.Infrastructure.Factories.Components;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext

@@ -1,8 +1,9 @@
+using UnityEngine;
 using Zenject;
 
-namespace WizardSpells.Infrastructure.Factories.Component
+namespace WizardSpells.Infrastructure.Factories.Components
 {
-    public interface IComponentFactory<TComponent> : IFactory<TComponent> where TComponent : UnityEngine.Component
+    public interface IComponentFactory<TComponent> : IFactory<TComponent> where TComponent : Component
     {
         void ActivateGameObject(TComponent component);
         void DeactivateGameObject(TComponent component);

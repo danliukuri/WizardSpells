@@ -2,9 +2,9 @@ using UnityEngine;
 using WizardSpells.Data.Configuration;
 using WizardSpells.Utilities.Extensions.Unity;
 
-namespace WizardSpells.Infrastructure.Factories.Component
+namespace WizardSpells.Infrastructure.Factories.Components
 {
-    public class ComponentFactory<TComponent> : IComponentFactory<TComponent> where TComponent : UnityEngine.Component
+    public class ComponentFactory<TComponent> : IComponentFactory<TComponent> where TComponent : Component
     {
         protected readonly IFactoryConfig _config;
         protected readonly Transform _objectParent;

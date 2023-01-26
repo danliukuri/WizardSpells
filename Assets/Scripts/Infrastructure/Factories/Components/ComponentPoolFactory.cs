@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 using WizardSpells.Data.Configuration;
 using Zenject;
 
-namespace WizardSpells.Infrastructure.Factories.Component
+namespace WizardSpells.Infrastructure.Factories.Components
 {
     public class ComponentPoolFactory<TComponent> : IFactory<ObjectPool<TComponent>>, IInitializable
-        where TComponent : UnityEngine.Component
+        where TComponent : Component
     {
         private readonly List<ObjectPool<TComponent>> _createdPools = new();
         private readonly IComponentFactory<TComponent> _componentFactory;
