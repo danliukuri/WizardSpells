@@ -1,14 +1,14 @@
 using System.Collections;
 using FluentAssertions;
-using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using WizardSpells.Data.Scene;
 using WizardSpells.Services.SceneManagement;
+using WizardSpells.Tests.PlayMode.TestUtilities;
 
-namespace WizardSpells.Tests.PlayMode
+namespace WizardSpells.Tests.PlayMode.Services.SceneManagement
 {
     public class SceneLoaderTests
     {
@@ -19,7 +19,7 @@ namespace WizardSpells.Tests.PlayMode
         public IEnumerator WhenLoadScene_AndSceneNameIsMain_AndSceneIsLoaded_ThenCurrentSceneNameShouldBeMain()
         {
             // Arrange
-            var sceneLoader = Substitute.For<SceneLoader>();
+            SceneLoader sceneLoader = Create.SceneLoader();
 
             // Act
             AsyncOperation mainSceneLoadingOperation = sceneLoader.Load(SceneName.Main);
@@ -33,7 +33,7 @@ namespace WizardSpells.Tests.PlayMode
         public IEnumerator WhenLoadScene_AndSceneIsLoaded_ThenCurrentSceneNameShouldBeActiveSceneName()
         {
             // Arrange
-            var sceneLoader = Substitute.For<SceneLoader>();
+            SceneLoader sceneLoader = Create.SceneLoader();
 
             // Act
             AsyncOperation mainSceneLoadingOperation = sceneLoader.Load(SceneName.Main);

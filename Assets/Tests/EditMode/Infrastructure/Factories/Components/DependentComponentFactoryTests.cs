@@ -1,10 +1,11 @@
 using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
-using WizardSpells.Infrastructure.Factories.Component;
+using WizardSpells.Infrastructure.Factories.Components;
+using WizardSpells.Tests.EditMode.TestUtilities;
 using Zenject;
 
-namespace WizardSpells.Tests.EditMode
+namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
 {
     public class DependentComponentFactoryTests : ZenjectUnitTestFixture
     {
@@ -46,7 +47,7 @@ namespace WizardSpells.Tests.EditMode
             // Assert
             injectedRandomFloatValue.Should().Be(randomValue);
         }
-        
+
         private class TestObject : MonoBehaviour
         {
             [Inject] public float FloatValue { get; }

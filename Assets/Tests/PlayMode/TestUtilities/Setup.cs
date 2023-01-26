@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using WizardSpells.Data.Scene;
 
-namespace WizardSpells.Tests.PlayMode
+namespace WizardSpells.Tests.PlayMode.TestUtilities
 {
     public class Setup
     {

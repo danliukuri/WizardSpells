@@ -2,7 +2,7 @@
 using UnityEngine;
 using WizardSpells.Data.Configuration;
 
-namespace WizardSpells.Tests.EditMode
+namespace WizardSpells.Tests.EditMode.TestUtilities
 {
     public static class Substitute
     {

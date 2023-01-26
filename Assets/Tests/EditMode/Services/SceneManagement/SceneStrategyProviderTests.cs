@@ -3,9 +3,10 @@ using NUnit.Framework;
 using WizardSpells.Data.Scene;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;
+using WizardSpells.Tests.EditMode.TestUtilities;
 using WizardSpells.Utilities.Patterns.Strategy;
 
-namespace WizardSpells.Tests.EditMode
+namespace WizardSpells.Tests.EditMode.Services.SceneManagement
 {
     public class SceneStrategyProviderTests
     {
