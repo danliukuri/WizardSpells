@@ -7,9 +7,9 @@ namespace WizardSpells.Infrastructure.Factories.Components
 {
     public class DependentComponentFactory<TComponent> : ComponentFactory<TComponent> where TComponent : Component
     {
-        private readonly DiContainer _diContainer;
+        private readonly IInstantiator _diContainer;
 
-        public DependentComponentFactory(IFactoryConfig config, Transform objectParent, DiContainer diContainer) :
+        public DependentComponentFactory(IFactoryConfig config, Transform objectParent, IInstantiator diContainer) :
             base(config, objectParent) => _diContainer = diContainer;
 
         public override TComponent Create() =>
