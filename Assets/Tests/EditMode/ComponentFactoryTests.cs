@@ -1,7 +1,7 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
-using WizardSpells.Data.Configuration;
 using WizardSpells.Infrastructure.Factories.Component;
 
 namespace WizardSpells.Tests.EditMode
@@ -9,10 +9,30 @@ namespace WizardSpells.Tests.EditMode
     public class ComponentFactoryTests
     {
         [Test]
-        public void WhenCreate_ThenNewComponentShouldNotBeNull()
+        public void WhenCreate_ThenNewComponentShouldNotBeNull() =>
+            WhenCreate_ThenNewComponentShouldNotBeNull(() => Create.ComponentFactory<Transform>());
+
+        [Test]
+        public void WhenCreate_ThenNewGameObjectShouldNotBeOriginal() =>
+            WhenCreate_ThenNewGameObjectShouldNotBeOriginal
+                (originalGameObject => Create.ComponentFactory<Transform>(originalGameObject));
+
+        [Test]
+        public void WhenCreate_AndOriginalHas3Components_ThenNewComponentsCountShouldBeGreaterOrEqualToOriginal() =>
+            WhenCreate_AndOriginalHas3Components_ThenNewComponentsCountShouldBeGreaterOrEqualToOriginal
+                (originalGameObject => Create.ComponentFactory<Transform>(originalGameObject));
+
+        [Test]
+        public void WhenCreate_AndOriginalHas3Components_ThenNewComponentsShouldBeTypeOfOriginalOnes() =>
+            WhenCreate_AndOriginalHas3Components_ThenNewComponentsShouldBeTypeOfOriginalOnes
+                (originalGameObject => Create.ComponentFactory<Transform>(originalGameObject));
+
+
+        public static void WhenCreate_ThenNewComponentShouldNotBeNull
+            (Func<ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            ComponentFactory<Transform> factory = Create.ComponentFactory();
+            ComponentFactory<Transform> factory = factoryCreationFunc.Invoke();
 
             // Act
             Transform newComponent = factory.Create();
@@ -21,13 +41,13 @@ namespace WizardSpells.Tests.EditMode
             newComponent.Should().NotBeNull();
         }
 
-        [Test]
-        public void WhenCreate_ThenNewGameObjectShouldNotBeOriginal()
+        public static void WhenCreate_ThenNewGameObjectShouldNotBeOriginal
+            (Func<GameObject, ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            var originalGameObject = new GameObject("original");
-            IFactoryConfig factoryConfig = Create.FactoryConfig(originalGameObject);
-            ComponentFactory<Transform> factory = Create.ComponentFactory(factoryConfig);
+            const string originalGameObjectName = "original";
+            var originalGameObject = new GameObject(originalGameObjectName);
+            ComponentFactory<Transform> factory = factoryCreationFunc.Invoke(originalGameObject);
 
             // Act
             Transform newComponent = factory.Create();
@@ -36,12 +56,12 @@ namespace WizardSpells.Tests.EditMode
             newComponent.gameObject.Should().NotBe(originalGameObject);
         }
 
-        [Test]
-        public void WhenCreate_AndOriginalHas3Components_ThenNewComponentsCountShouldBeGreaterOrEqualToOriginal()
+        public static void WhenCreate_AndOriginalHas3Components_ThenNewComponentsCountShouldBeGreaterOrEqualToOriginal
+            (Func<GameObject, ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            GameObject originalGameObject = Create.NewGameObject(typeof(Rigidbody), typeof(BoxCollider));
-            ComponentFactory<Transform> factory = Create.ComponentFactory(Create.FactoryConfig(originalGameObject));
+            GameObject originalGameObject = Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
+            ComponentFactory<Transform> factory = factoryCreationFunc.Invoke(originalGameObject);
 
             // Act
             Transform newComponent = factory.Create();
@@ -52,12 +72,12 @@ namespace WizardSpells.Tests.EditMode
             newGameObjectComponentsCount.Should().BeGreaterOrEqualTo(originalGameObjectComponentsCount);
         }
 
-        [Test]
-        public void WhenCreate_AndOriginalHas3Components_ThenNewComponentsShouldBeTypeOfOriginalOnes()
+        public static void WhenCreate_AndOriginalHas3Components_ThenNewComponentsShouldBeTypeOfOriginalOnes
+            (Func<GameObject, ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            GameObject originalGameObject = Create.NewGameObject(typeof(Rigidbody), typeof(BoxCollider));
-            ComponentFactory<Transform> factory = Create.ComponentFactory(Create.FactoryConfig(originalGameObject));
+            GameObject originalGameObject = Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
+            ComponentFactory<Transform> factory = factoryCreationFunc.Invoke(originalGameObject);
 
             // Act
             Transform newComponent = factory.Create();

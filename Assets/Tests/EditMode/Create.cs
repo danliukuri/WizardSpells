@@ -1,28 +1,27 @@
 using System;
 using System.Linq;
-using NSubstitute;
 using UnityEngine;
-using WizardSpells.Data.Configuration;
 using WizardSpells.Data.Scene;
 using WizardSpells.Infrastructure.Factories.Component;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;
+using Zenject;
 
 namespace WizardSpells.Tests.EditMode
 {
-    public class Create
+    public static class Create
     {
         public static InitialGameStateSettingMainSceneStrategy InitialGameStateSettingMainSceneStrategy(
-            IStateMachine gameStateMachine = default) => new(gameStateMachine);
+            IStateMachine gameStateMachine = default) => new(gameStateMachine.SubstituteIfDefault());
 
         public static SceneStrategyProvider SceneStrategyProvider(IStrategy defaultStrategy = default, 
             params (SceneName SceneName, IStrategy Instance)[] strategies) =>
-            Substitute.For<SceneStrategyProvider>(strategies
-                .ToDictionary(strategy => strategy.SceneName, strategy => strategy.Instance), defaultStrategy);
+            new(strategies?.ToDictionary(strategy => strategy.SceneName, strategy => strategy.Instance)
+                    .SubstituteIfDefault(), defaultStrategy.SubstituteIfDefault());
 
-        public static GameObject NewGameObject(params Type[] componentTypesToAttach)
+        public static GameObject GameObject(params Type[] componentTypesToAttach)
         {
             var newGameObject = new GameObject();
             foreach (Type type in componentTypesToAttach)
@@ -30,16 +29,16 @@ namespace WizardSpells.Tests.EditMode
             return newGameObject;
         }
 
-        public static IFactoryConfig FactoryConfig(GameObject returnPrefab = default)
-        {
-            returnPrefab ??= NewGameObject();
-            var factoryConfig = Substitute.For<IFactoryConfig>();
-            factoryConfig.Prefab.Returns(returnPrefab);
-            return factoryConfig;
-        }
+        public static ComponentFactory<TComponent> ComponentFactory<TComponent>(GameObject originalGameObject = default, 
+            Transform objectsParent = default)  where TComponent : Component =>
+            new(Substitute.FactoryConfig(originalGameObject.NewIfDefault()), objectsParent.SubstituteIfDefault());
 
-        public static ComponentFactory<Transform> ComponentFactory(IFactoryConfig factoryConfig = default,
-            Transform objectsParent = default) =>
-            Substitute.ForPartsOf<ComponentFactory<Transform>>(factoryConfig ?? FactoryConfig(), objectsParent);
+        public static DependentComponentFactory<TComponent> DependentComponentFactory<TComponent>(
+            GameObject originalGameObject = default, DiContainer container = default,
+            Transform objectsParent = default) where TComponent : Component =>
+            new(Substitute.FactoryConfig(originalGameObject.NewIfDefault()), objectsParent.SubstituteIfDefault(),
+                container.SubstituteIfDefault());
+
+        public static T NewIfDefault<T>(this T obj) where T : class, new() => obj ?? new();
     }
 }
