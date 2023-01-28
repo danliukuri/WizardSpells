@@ -1,6 +1,7 @@
 using UnityEngine;
 using WizardSpells.Data.Configuration.Player;
 using WizardSpells.Data.Dynamic.Player;
+using WizardSpells.Features.Force.Generators.Environment;
 using WizardSpells.Features.Force.Generators.Player;
 using WizardSpells.Features.Force.MotionForce;
 using WizardSpells.Services.Input.Player;
@@ -40,6 +41,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         {
             Container.BindInterfacesTo<PlayerJumpForceGenerator>().AsSingle();
             Container.BindInterfacesTo<PlayerMovementForceGenerator>().AsSingle();
+            Container.BindInterfacesTo<GravityForceGenerator>().AsSingle();
         }
     }
 }
