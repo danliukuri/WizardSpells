@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using WizardSpells.Data.Scene;
 using WizardSpells.Infrastructure.GameStates;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
+using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.State.Machines;
+using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
@@ -15,7 +19,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Pro
             BindGameStates();
 
             BindInitialGameStateSettingStrategies();
-            BindInitialGameStateSettingStrategyProvider();
+            Container.BindInterfacesTo<SceneStrategyProvider>().AsSingle();
         }
 
         private void BindGameStateMachine()
@@ -26,27 +30,27 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Pro
 
         private void BindGameStates()
         {
-            var gameStatesTypes = new List<Type>
-            {
-                typeof(LoadingGameState),
-                typeof(SetupGameState)
-            };
+            var gameStatesTypes = new List<Type> { typeof(LoadingGameState), typeof(SetupGameState) };
             gameStatesTypes.ForEach(stateType => Container.BindInterfacesTo(stateType).AsSingle());
         }
 
         private void BindInitialGameStateSettingStrategies()
         {
-            var initialGameStateSettingStrategyTypes = new List<Type>
-            {
-                typeof(InitialGameStateSettingDefaultStrategy),
-                typeof(InitialGameStateSettingBootstrapSceneStrategy),
-                typeof(InitialGameStateSettingMainSceneStrategy)
-            };
-            foreach (Type initialGameStateSettingStrategyType in initialGameStateSettingStrategyTypes)
-                Container.BindInterfacesAndSelfTo(initialGameStateSettingStrategyType).AsTransient();
-        }
+            Container
+                .Bind<IDictionary<SceneName, IStrategy>>()
+                .FromMethod(context => new (SceneName SceneName, Type Type)[]
+                    {
+                        (SceneName.Bootstrap, typeof(InitialGameStateSettingBootstrapSceneStrategy)),
+                        (SceneName.Main, typeof(InitialGameStateSettingMainSceneStrategy))
+                    }
+                    .ToDictionary(info => info.SceneName, info => (IStrategy)context.Container.Instantiate(info.Type)))
+                .AsSingle()
+                .WhenInjectedInto<SceneStrategyProvider>();
 
-        private void BindInitialGameStateSettingStrategyProvider() =>
-            Container.BindInterfacesTo<InitialGameStateSettingStrategyProvider>().AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<InitialGameStateSettingDefaultStrategy>()
+                .AsSingle()
+                .WhenInjectedInto<SceneStrategyProvider>();
+        }
     }
 }

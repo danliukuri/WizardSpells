@@ -1,10 +1,20 @@
 using UnityEngine;
+using UnityEngine.Pool;
+using WizardSpells.Features.Player;
 using WizardSpells.Utilities.Patterns.State;
 
 namespace WizardSpells.Infrastructure.GameStates
 {
     public class SetupGameState : IEnterableState
     {
-        public void Enter() => Debug.Log("SetupGameState.Enter");
+        private readonly IObjectPool<Player> _playerPool;
+
+        public SetupGameState(IObjectPool<Player> playerPool) => _playerPool = playerPool;
+
+        public void Enter()
+        {
+            Debug.Log("SetupGameState.Enter");
+            _playerPool.Get();
+        }
     }
 }
