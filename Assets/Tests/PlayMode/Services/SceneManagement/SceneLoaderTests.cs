@@ -1,6 +1,5 @@
 using System.Collections;
 using FluentAssertions;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -12,8 +11,8 @@ namespace WizardSpells.Tests.PlayMode.Services.SceneManagement
 {
     public class SceneLoaderTests
     {
-        [SetUp]
-        public void SetUp() => Setup.LoadSceneIsDone(SceneName.Bootstrap);
+        [UnitySetUp]
+        public IEnumerator SetUp() => Setup.SetActiveSceneName(SceneName.Bootstrap);
 
         [UnityTest]
         public IEnumerator WhenLoadScene_AndSceneNameIsMain_AndSceneIsLoaded_ThenCurrentSceneNameShouldBeMain()
