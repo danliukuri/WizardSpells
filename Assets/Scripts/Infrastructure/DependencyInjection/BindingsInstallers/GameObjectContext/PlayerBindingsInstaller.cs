@@ -8,11 +8,18 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
     public class PlayerBindingsInstaller : MonoInstaller
     {
         [SerializeField] private InputActionsConfig inputActionsConfig;
+        [SerializeField] private PlayerConfig playerConfig;
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<InputActionsConfig>().FromScriptableObject(inputActionsConfig).AsSingle();
+            BindConfiguration();
             BindInputServices();
+        }
+        
+        private void BindConfiguration()
+        {
+            Container.BindInterfacesTo<InputActionsConfig>().FromScriptableObject(inputActionsConfig).AsSingle();
+            Container.BindInterfacesTo<PlayerConfig>().FromScriptableObject(playerConfig).AsSingle();
         }
         
         private void BindInputServices()
