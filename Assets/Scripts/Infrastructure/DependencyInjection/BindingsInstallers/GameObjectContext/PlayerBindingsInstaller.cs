@@ -1,5 +1,6 @@
 using UnityEngine;
 using WizardSpells.Data.Configuration.Player;
+using WizardSpells.Features.Force.MotionForce;
 using WizardSpells.Services.Input.Player;
 using Zenject;
 
@@ -14,6 +15,8 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         {
             BindConfiguration();
             BindInputServices();
+            
+            Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
         }
         
         private void BindConfiguration()
