@@ -4,7 +4,9 @@ using WizardSpells.Data.Dynamic.Player;
 using WizardSpells.Features.Force.Generators.Environment;
 using WizardSpells.Features.Force.Generators.Player;
 using WizardSpells.Features.Force.MotionForce;
+using WizardSpells.Features.Transformation;
 using WizardSpells.Services.Input.Player;
+using WizardSpells.Services.Transformation;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.GameObjectContext
@@ -20,9 +22,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
             Container.BindInterfacesTo<PlayerData>().AsSingle();
 
             BindInputServices();
-
-            Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
-            BindMotionForceGenerators();
+            BindPositionChangingService();
         }
 
         private void BindConfiguration()
@@ -37,7 +37,18 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
             Container.BindInterfacesTo<PlayerJumpingInputService>().AsSingle();
         }
 
-        private void BindMotionForceGenerators()
+        private void BindPositionChangingService()
+        {
+            BindMotionForceAppliers();
+            Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
+
+            Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();
+            Container.BindInterfacesTo<PositionChanger>().AsSingle();
+
+            Container.BindInterfacesTo<PositionChangingService>().AsSingle();
+        }
+
+        private void BindMotionForceAppliers()
         {
             Container.BindInterfacesTo<PlayerJumpForceGenerator>().AsSingle();
             Container.BindInterfacesTo<PlayerMovementForceGenerator>().AsSingle();
