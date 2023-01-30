@@ -1,4 +1,4 @@
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;
 

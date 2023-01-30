@@ -1,5 +1,5 @@
 using UnityEngine;
-using WizardSpells.Data.Configuration.Environment;
+using WizardSpells.Data.Static.Configuration.Environment;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext

@@ -1,6 +1,6 @@
 using UnityEngine;
-using WizardSpells.Data.Configuration.Environment;
 using WizardSpells.Data.Dynamic;
+using WizardSpells.Data.Static.Configuration.Environment;
 using WizardSpells.Features.Force.Accumulators;
 
 namespace WizardSpells.Features.Force.Generators.Environment

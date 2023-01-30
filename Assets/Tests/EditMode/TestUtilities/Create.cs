@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Infrastructure.Factories.Components;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;

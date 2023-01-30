@@ -1,4 +1,4 @@
-namespace WizardSpells.Data.Configuration.Player
+namespace WizardSpells.Data.Static.Configuration.Player
 {
     public interface IPlayerConfig
     {

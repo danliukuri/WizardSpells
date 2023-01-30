@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 
 namespace WizardSpells.Services.SceneManagement
 {

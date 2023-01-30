@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration
+namespace WizardSpells.Data.Static.Configuration
 {
     public interface IFactoryConfig
     {

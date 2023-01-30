@@ -1,6 +1,6 @@
 using System;
-using WizardSpells.Data.Configuration.Player;
 using WizardSpells.Data.Dynamic;
+using WizardSpells.Data.Static.Configuration.Player;
 using WizardSpells.Features.Force.Accumulators;
 using WizardSpells.Services.Input;
 using Zenject;

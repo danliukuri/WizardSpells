@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Infrastructure.GameStates;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;

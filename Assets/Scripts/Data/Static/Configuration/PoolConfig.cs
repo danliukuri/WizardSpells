@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration
+namespace WizardSpells.Data.Static.Configuration
 {
     [CreateAssetMenu(fileName = nameof(PoolConfig), menuName = "Configuration/Object Pool")]
     public class PoolConfig : ScriptableObject, IPoolConfig

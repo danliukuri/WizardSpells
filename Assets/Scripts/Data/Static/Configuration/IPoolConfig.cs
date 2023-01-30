@@ -1,4 +1,4 @@
-namespace WizardSpells.Data.Configuration
+namespace WizardSpells.Data.Static.Configuration
 {
     public interface IPoolConfig
     {

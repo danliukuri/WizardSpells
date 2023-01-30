@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration.Player
+namespace WizardSpells.Data.Static.Configuration.Player
 {
     [CreateAssetMenu(fileName = nameof(PlayerConfig), menuName = "Configuration/Player")]
 

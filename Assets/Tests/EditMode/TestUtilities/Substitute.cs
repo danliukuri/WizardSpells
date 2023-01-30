@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
 using UnityEngine;
-using WizardSpells.Data.Configuration;
+using WizardSpells.Data.Static.Configuration;
 using Zenject;
 
 namespace WizardSpells.Tests.EditMode.TestUtilities

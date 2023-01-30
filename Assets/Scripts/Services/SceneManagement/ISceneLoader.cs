@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 
 namespace WizardSpells.Services.SceneManagement
 {

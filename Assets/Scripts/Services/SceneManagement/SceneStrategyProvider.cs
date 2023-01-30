@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Utilities.Patterns.Strategy;
 
 namespace WizardSpells.Services.SceneManagement

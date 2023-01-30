@@ -3,7 +3,7 @@ using FluentAssertions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Services.SceneManagement;
 using WizardSpells.Tests.PlayMode.TestUtilities;
 

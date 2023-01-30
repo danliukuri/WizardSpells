@@ -1,6 +1,6 @@
 using UnityEngine;
-using WizardSpells.Data.Configuration.Player;
 using WizardSpells.Data.Dynamic.Player;
+using WizardSpells.Data.Static.Configuration.Player;
 using WizardSpells.Features.Force.Generators.Environment;
 using WizardSpells.Features.Force.Generators.Player;
 using WizardSpells.Features.Force.MotionForce;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration
+namespace WizardSpells.Data.Static.Configuration
 {
     [CreateAssetMenu(fileName = nameof(FactoryConfig), menuName = "Configuration/Factory")]
     public class FactoryConfig : ScriptableObject, IFactoryConfig

@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using WizardSpells.Data.Scene;
+using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;
 using WizardSpells.Tests.EditMode.TestUtilities;

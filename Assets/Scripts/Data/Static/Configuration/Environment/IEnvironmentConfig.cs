@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration.Environment
+namespace WizardSpells.Data.Static.Configuration.Environment
 {
     public interface IEnvironmentConfig
     {

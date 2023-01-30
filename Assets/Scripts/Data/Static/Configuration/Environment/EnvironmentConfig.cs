@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WizardSpells.Data.Configuration.Environment
+namespace WizardSpells.Data.Static.Configuration.Environment
 {
     [CreateAssetMenu(fileName = nameof(EnvironmentConfig), menuName = "Configuration/Environment")]
     public class EnvironmentConfig : ScriptableObject, IEnvironmentConfig

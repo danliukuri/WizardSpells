@@ -1,6 +1,6 @@
 using System;
 using UnityEngine.InputSystem;
-using WizardSpells.Data.Configuration.Player;
+using WizardSpells.Data.Static.Configuration.Player;
 using Zenject;
 
 namespace WizardSpells.Services.Input.Player
