@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using WizardSpells.Data.Static.Enumerations.Scene;
 
-namespace WizardSpells.Services.SceneManagement
+namespace WizardSpells.Services.Scene
 {
     public interface ISceneLoader
     {

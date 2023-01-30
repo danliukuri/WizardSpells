@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using WizardSpells.Data.Static.Enumerations.Scene;
 
-namespace WizardSpells.Services.SceneManagement
+namespace WizardSpells.Services.Scene
 {
     public class SceneLoader : ISceneLoader
     {

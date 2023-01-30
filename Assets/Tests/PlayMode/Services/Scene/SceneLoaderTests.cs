@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Services.Scene;
 using WizardSpells.Tests.PlayMode.TestUtilities;
 
-namespace WizardSpells.Tests.PlayMode.Services.SceneManagement
+namespace WizardSpells.Tests.PlayMode.Services.Scene
 {
     public class SceneLoaderTests
     {

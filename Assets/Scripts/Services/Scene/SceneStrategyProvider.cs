@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Utilities.Patterns.Strategy;
 
-namespace WizardSpells.Services.SceneManagement
+namespace WizardSpells.Services.Scene
 {
     public class SceneStrategyProvider : IStrategyProvider<IStrategy, SceneName>
     {

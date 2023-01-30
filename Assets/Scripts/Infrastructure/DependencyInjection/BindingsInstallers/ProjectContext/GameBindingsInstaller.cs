@@ -4,7 +4,7 @@ using System.Linq;
 using WizardSpells.Architecture.GameStates;
 using WizardSpells.Architecture.GameStates.InitialSettingStrategies;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Services.Scene;
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;

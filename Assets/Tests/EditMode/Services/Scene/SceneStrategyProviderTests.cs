@@ -2,11 +2,11 @@ using FluentAssertions;
 using NUnit.Framework;
 using WizardSpells.Architecture.GameStates.InitialSettingStrategies;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Services.Scene;
 using WizardSpells.Tests.EditMode.TestUtilities;
 using WizardSpells.Utilities.Patterns.Strategy;
 
-namespace WizardSpells.Tests.EditMode.Services.SceneManagement
+namespace WizardSpells.Tests.EditMode.Services.Scene
 {
     public class SceneStrategyProviderTests
     {

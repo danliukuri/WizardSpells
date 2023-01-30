@@ -1,6 +1,6 @@
 using UnityEngine;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Services.Scene;
 using WizardSpells.Utilities.Patterns.State;
 
 namespace WizardSpells.Architecture.GameStates
