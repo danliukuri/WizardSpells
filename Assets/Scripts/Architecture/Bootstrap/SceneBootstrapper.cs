@@ -4,7 +4,7 @@ using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;
 
-namespace WizardSpells.Infrastructure.Bootstrap
+namespace WizardSpells.Architecture.Bootstrap
 {
     public class SceneBootstrapper : MonoBehaviour
     {

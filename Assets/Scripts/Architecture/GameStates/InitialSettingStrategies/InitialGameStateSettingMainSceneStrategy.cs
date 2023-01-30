@@ -1,7 +1,7 @@
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;
 
-namespace WizardSpells.Infrastructure.GameStates.InitialSettingStrategies
+namespace WizardSpells.Architecture.GameStates.InitialSettingStrategies
 {
     public class InitialGameStateSettingMainSceneStrategy : StateSettingStrategy
     {

@@ -3,7 +3,7 @@ using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.State;
 
-namespace WizardSpells.Infrastructure.GameStates
+namespace WizardSpells.Architecture.GameStates
 {
     public class LoadingGameState : IEnterableState<SceneName>
     {

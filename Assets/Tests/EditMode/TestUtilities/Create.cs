@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using WizardSpells.Architecture.GameStates.InitialSettingStrategies;
 using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Infrastructure.Factories.Components;
-using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
 using WizardSpells.Services.SceneManagement;
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;

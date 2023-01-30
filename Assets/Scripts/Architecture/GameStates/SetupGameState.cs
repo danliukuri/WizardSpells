@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 using WizardSpells.Features.Player;
 using WizardSpells.Utilities.Patterns.State;
 
-namespace WizardSpells.Infrastructure.GameStates
+namespace WizardSpells.Architecture.GameStates
 {
     public class SetupGameState : IEnterableState
     {
