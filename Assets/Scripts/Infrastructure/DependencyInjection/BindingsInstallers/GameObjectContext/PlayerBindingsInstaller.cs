@@ -1,12 +1,11 @@
 using UnityEngine;
 using WizardSpells.Data.Dynamic.Player;
 using WizardSpells.Data.Static.Configuration.Player;
-using WizardSpells.Features.Force.Generators.Environment;
-using WizardSpells.Features.Force.Generators.Player;
-using WizardSpells.Features.Force.MotionForce;
-using WizardSpells.Features.Transformation;
-using WizardSpells.Services.Input.Player;
-using WizardSpells.Services.Transformation;
+using WizardSpells.Features.Services.Force.Generators.Environment;
+using WizardSpells.Features.Services.Force.Generators.Player;
+using WizardSpells.Features.Services.Force.MotionForce;
+using WizardSpells.Features.Services.Transformation;
+using WizardSpells.Infrastructure.Services.Input.Player;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.GameObjectContext

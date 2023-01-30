@@ -1,6 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.Scene;
+using WizardSpells.Infrastructure.Services.Scene;
 
 namespace WizardSpells.Tests.PlayMode.TestUtilities
 {

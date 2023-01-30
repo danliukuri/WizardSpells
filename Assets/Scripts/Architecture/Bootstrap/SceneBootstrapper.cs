@@ -1,6 +1,6 @@
 using UnityEngine;
 using WizardSpells.Data.Static.Enumerations.Scene;
-using WizardSpells.Services.Scene;
+using WizardSpells.Infrastructure.Services.Scene;
 using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;
 
