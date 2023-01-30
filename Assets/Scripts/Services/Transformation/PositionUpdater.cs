@@ -7,7 +7,7 @@ using Zenject;
 
 namespace WizardSpells.Services.Transformation
 {
-    public class PositionChangingService : IInitializable, IDisposable, ITickable
+    public class PositionUpdater : IInitializable, IDisposable, ITickable
     {
         private readonly IPositionChanger _positionChanger;
         private readonly IMotionForceProvider _motionForceProvider;
@@ -15,7 +15,7 @@ namespace WizardSpells.Services.Transformation
 
         private bool _isNeededToChangePosition;
         
-        public PositionChangingService(IPositionChanger positionChanger, IMotionForceProvider motionForceProvider,
+        public PositionUpdater(IPositionChanger positionChanger, IMotionForceProvider motionForceProvider,
             IForceGenerator[] motionForceGenerators)
         {
             _positionChanger = positionChanger;

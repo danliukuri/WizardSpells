@@ -22,7 +22,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
             Container.BindInterfacesTo<PlayerData>().AsSingle();
 
             BindInputServices();
-            BindPositionChangingService();
+            BindPositionChangingServices();
         }
 
         private void BindConfiguration()
@@ -37,7 +37,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
             Container.BindInterfacesTo<PlayerJumpingInputService>().AsSingle();
         }
 
-        private void BindPositionChangingService()
+        private void BindPositionChangingServices()
         {
             BindMotionForceAppliers();
             Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
@@ -45,7 +45,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
             Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesTo<PositionChanger>().AsSingle();
 
-            Container.BindInterfacesTo<PositionChangingService>().AsSingle();
+            Container.BindInterfacesTo<PositionUpdater>().AsSingle();
         }
 
         private void BindMotionForceAppliers()
