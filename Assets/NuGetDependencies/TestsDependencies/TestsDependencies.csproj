@@ -9,4 +9,12 @@
       <PackageReference Include="NSubstitute" Version="4.4.0" />
     </ItemGroup>
 
+    <Target Name="PublishReferenciesDocumentation" AfterTargets="Publish">
+        <ItemGroup>
+            <ReferenciesDocumentation Include="%(Reference.RelativeDir)%(Reference.Filename).xml" Condition="Exists('$(PublishDir)%(Filename).dll')" />
+        </ItemGroup>
+        <Message Text="Copying references documentation to publish folder" Importance="High" />
+        <Copy SourceFiles="@(ReferenciesDocumentation)" DestinationFolder="$(PublishDir)" Condition="Exists('%(RootDir)%(Directory)%(Filename)%(Extension)')" />
+    </Target>
+
 </Project>
