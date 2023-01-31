@@ -17,4 +17,22 @@
         <Copy SourceFiles="@(ReferenciesDocumentation)" DestinationFolder="$(PublishDir)" Condition="Exists('%(RootDir)%(Directory)%(Filename)%(Extension)')" />
     </Target>
 
+    <Target Name="DeletePublishedProjectFiles" AfterTargets="Publish">
+        <ItemGroup>
+            <PublishedProjectFiles Include="$(PublishDir)\$(ProjectName).*" />
+        </ItemGroup>
+        <Message Text="Deleting project files from publish folder" Importance="High" />
+        <Delete Files="@(PublishedProjectFiles)"/>
+    </Target>
+
+    <Target Name="DeleteBuildFolders" AfterTargets="Publish">
+        <ItemGroup>
+            <FolderMetaFiles Include="$(ProjectDir)/*.meta" />
+        </ItemGroup>
+        <Message Text="Deleting build folders" Importance="High" />
+        <RemoveDir Directories="$(BaseIntermediateOutputPath); $(BaseOutputPath)"/>
+        <Message Text="Deleting all project meta files" Importance="High" />
+        <Delete Files="@(FolderMetaFiles)"/>
+    </Target>
+
 </Project>
