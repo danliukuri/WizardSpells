@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using WizardSpells.Data.Static.Enumerations.Scene;
 using WizardSpells.Infrastructure.Services.Scene;
-using WizardSpells.Tests.PlayMode.TestUtilities;
+using WizardSpells.Tests.Utilities.Infrastructure.Services.Scene;
 
 namespace WizardSpells.Tests.PlayMode.Infrastructure.Services.Scene
 {

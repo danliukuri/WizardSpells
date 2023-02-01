@@ -3,7 +3,7 @@ using FluentAssertions.Events;
 using NUnit.Framework;
 using UnityEngine;
 using WizardSpells.Features.Services.Force.MotionForce;
-using WizardSpells.Tests.EditMode.TestUtilities;
+using WizardSpells.Tests.Utilities.Features.Services.Force.MotionForce;
 
 namespace WizardSpells.Tests.EditMode.Features.Services.Force.MotionForce
 {

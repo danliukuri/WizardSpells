@@ -3,7 +3,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
 using WizardSpells.Infrastructure.Factories.Components;
-using WizardSpells.Tests.EditMode.TestUtilities;
+using WizardSpells.Tests.Utilities.Infrastructure.Factories.Components;
 
 namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
 {
@@ -61,7 +61,7 @@ namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
             (Func<GameObject, ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            GameObject originalGameObject = Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
+            GameObject originalGameObject =  Utilities.Common.Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
             ComponentFactory<Transform> factory = factoryCreationFunc.Invoke(originalGameObject);
 
             // Act
@@ -77,7 +77,7 @@ namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
             (Func<GameObject, ComponentFactory<Transform>> factoryCreationFunc)
         {
             // Arrange
-            GameObject originalGameObject = Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
+            GameObject originalGameObject = Utilities.Common.Create.GameObject(typeof(Rigidbody), typeof(BoxCollider));
             ComponentFactory<Transform> factory = factoryCreationFunc.Invoke(originalGameObject);
 
             // Act

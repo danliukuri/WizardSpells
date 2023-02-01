@@ -3,7 +3,7 @@ using UnityEngine;
 using WizardSpells.Data.Static.Configuration;
 using Zenject;
 
-namespace WizardSpells.Tests.EditMode.TestUtilities
+namespace WizardSpells.Tests.Utilities.Infrastructure.Factories.Components
 {
     public static class Substitute
     {
@@ -23,7 +23,5 @@ namespace WizardSpells.Tests.EditMode.TestUtilities
                     Object.Instantiate(info.Arg<GameObject>(), info.Arg<Transform>()).GetComponent<TComponent>());
             return diContainer;
         }
-
-        public static T SubstituteIfDefault<T>(this T obj) where T : class => obj ?? NSubstitute.Substitute.For<T>();
     }
 }
