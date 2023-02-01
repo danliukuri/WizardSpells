@@ -13,7 +13,7 @@ namespace WizardSpells.Features.Services.Force.MotionForce
         
         public Vector3 GetMotionForce()
         {
-            Vector3 moveForce = PermanentForce + _instantForce;
+            Vector3 moveForce = _permanentForce + _instantForce;
             _instantForce = Vector3.zero;
             return moveForce;
         }

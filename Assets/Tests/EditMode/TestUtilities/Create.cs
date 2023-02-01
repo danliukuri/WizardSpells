@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using WizardSpells.Architecture.GameStates.InitialSettingStrategies;
 using WizardSpells.Data.Static.Enumerations.Scene;
+using WizardSpells.Features.Services.Force.MotionForce;
 using WizardSpells.Infrastructure.Factories.Components;
 using WizardSpells.Infrastructure.Services.Scene;
 using WizardSpells.Utilities.Patterns.State.Machines;
@@ -38,6 +39,8 @@ namespace WizardSpells.Tests.EditMode.TestUtilities
             Transform objectsParent = default) where TComponent : Component =>
             new(Substitute.FactoryConfig(originalGameObject.NewIfDefault()), objectsParent.SubstituteIfDefault(),
                 diContainer ?? Substitute.DiContainer<TComponent>());
+
+        public static MotionForceAccumulator MotionForceAccumulator() => new();
 
         public static T NewIfDefault<T>(this T obj) where T : class, new() => obj ?? new T();
     }
