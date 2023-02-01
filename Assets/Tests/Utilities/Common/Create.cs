@@ -12,5 +12,7 @@ namespace WizardSpells.Tests.Utilities.Common
                 newGameObject.AddComponent(type);
             return newGameObject;
         }
+
+        public static GameObject Ground() => UnityEngine.GameObject.CreatePrimitive(PrimitiveType.Plane);
     }
 }

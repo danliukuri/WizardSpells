@@ -17,14 +17,14 @@ namespace WizardSpells.Features.Services.Transformation
         public void ChangePosition(Vector3 motionForce)
         {
             if (_data.IsGrounded && !HasForceToStayGrounded(motionForce))
-                AddStickingForce(ref motionForce);
-            
+                motionForce += CalculateStickingForce();
+
             _characterController.Move(motionForce);
             _data.IsGrounded = _characterController.isGrounded;
         }
 
         private static bool HasForceToStayGrounded(Vector3 motionForce) => Mathf.Abs(motionForce.y) > float.Epsilon;
 
-        private void AddStickingForce(ref Vector3 motionForce) => motionForce.y = -_characterController.contactOffset;
+        private Vector3 CalculateStickingForce() => Vector3.down * _characterController.contactOffset;
     }
 }
