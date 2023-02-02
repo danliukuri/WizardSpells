@@ -1,24 +1,48 @@
+using System;
 using UnityEngine;
 using WizardSpells.Data.Dynamic;
+using WizardSpells.Features.Services.Force.MotionForce;
+using Zenject;
 
 namespace WizardSpells.Features.Services.Transformation
 {
-    public class PositionChanger : IPositionChanger
+    public class PositionChanger : IInitializable, IDisposable, ITickable
     {
         private readonly CharacterController _characterController;
         private readonly ICharacterData _data;
+        private readonly IMotionForceProvider _motionForceProvider;
 
-        public PositionChanger(CharacterController characterController, ICharacterData data)
+        private bool _isNeededToChangePosition;
+
+        public PositionChanger(CharacterController characterController, ICharacterData data,
+            IMotionForceProvider motionForceProvider)
         {
             _characterController = characterController;
             _data = data;
-            _data.ColliderContactOffset = _characterController.contactOffset;
+            _motionForceProvider = motionForceProvider;
         }
+
+        public void Initialize()
+        {
+            _data.ColliderContactOffset = _characterController.contactOffset;
+            _motionForceProvider.MotionForceChanged += ChangePositionNextFrame;
+        }
+
+        public void Dispose() => _motionForceProvider.MotionForceChanged -= ChangePositionNextFrame;
+
+        public void Tick()
+        {
+            if (_isNeededToChangePosition)
+                ChangePosition(_motionForceProvider.GetMotionForce() * Time.deltaTime);
+        }
+
+        private void ChangePositionNextFrame() => _isNeededToChangePosition = true;
 
         public void ChangePosition(Vector3 motionForce)
         {
             _characterController.Move(motionForce);
             _data.IsGrounded = _characterController.isGrounded;
+            _isNeededToChangePosition = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using WizardSpells.Data.Dynamic.Player;
 using WizardSpells.Data.Static.Configuration.Player;
+using WizardSpells.Features.Services.Force.Generators;
 using WizardSpells.Features.Services.Force.Generators.Environment;
 using WizardSpells.Features.Services.Force.Generators.Player;
 using WizardSpells.Features.Services.Force.MotionForce;
@@ -39,12 +40,11 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         private void BindPositionChangingServices()
         {
             BindMotionForceGenerators();
+            Container.BindInterfacesTo<ForceGeneratorsUpdater>().AsSingle();
             Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
 
             Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesTo<PositionChanger>().AsSingle();
-
-            Container.BindInterfacesTo<PositionUpdater>().AsSingle();
         }
 
         private void BindMotionForceGenerators()
