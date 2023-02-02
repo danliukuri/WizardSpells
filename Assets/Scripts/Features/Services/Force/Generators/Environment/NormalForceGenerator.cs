@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using WizardSpells.Data.Dynamic;
 using WizardSpells.Features.Services.Force.Accumulators;
+using WizardSpells.Features.Services.Force.MotionForce;
 
 namespace WizardSpells.Features.Services.Force.Generators.Environment
 {
@@ -21,11 +22,9 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
         public void GenerateForce(float deltaTime)
         {
             Vector3 currentForce = _forceAccumulator.PermanentForce;
-            if (_forceUserData.IsGrounded && !IsEnoughToMoveUp(currentForce) && IsBigEnoughToReact(currentForce))
+            if (_forceUserData.IsGrounded && !currentForce.IsEnoughToMoveUp() && IsBigEnoughToReact(currentForce))
                 GenerateNormalForce();
         }
-
-        private static bool IsEnoughToMoveUp(Vector3 motionForce) => motionForce.y > default(float);
 
         private bool IsBigEnoughToReact(Vector3 motionForce) =>
             Mathf.Abs(motionForce.y) > _forceUserData.ColliderContactOffset;

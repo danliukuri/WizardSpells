@@ -51,8 +51,10 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         {
             Container.BindInterfacesTo<PlayerJumpForceGenerator>().AsSingle();
             Container.BindInterfacesTo<PlayerMovementForceGenerator>().AsSingle();
+
             Container.BindInterfacesTo<GravityForceGenerator>().AsSingle();
             Container.BindInterfacesTo<NormalForceGenerator>().AsSingle();
+            Container.BindInterfacesTo<StickingForceGenerator>().AsSingle();
         }
     }
 }
