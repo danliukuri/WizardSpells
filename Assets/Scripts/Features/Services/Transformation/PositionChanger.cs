@@ -21,6 +21,7 @@ namespace WizardSpells.Features.Services.Transformation
 
             _characterController.Move(motionForce);
             _data.IsGrounded = _characterController.isGrounded;
+            _data.ColliderContactOffset = _characterController.contactOffset;
         }
 
         private static bool HasForceToStayGrounded(Vector3 motionForce) => Mathf.Abs(motionForce.y) > float.Epsilon;
