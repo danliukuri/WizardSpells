@@ -2,13 +2,14 @@
 using WizardSpells.Data.Dynamic;
 using WizardSpells.Features.Services.Force.Accumulators;
 using WizardSpells.Features.Services.Force.MotionForce;
+using Zenject;
 
 namespace WizardSpells.Features.Services.Force.Generators.Environment
 {
     /// <remarks>
     ///     <a href="https://en.wikipedia.org/wiki/Normal_force">Normal force</a>
     /// </remarks>
-    public class NormalForceGenerator : IForceGenerator
+    public class NormalForceGenerator : ITickable
     {
         private readonly IPermanentForceAccumulator _forceAccumulator;
         private readonly ICharacterData _forceUserData;
@@ -19,7 +20,7 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
             _forceUserData = forceUserData;
         }
 
-        public void GenerateForce(float deltaTime)
+        public void Tick()
         {
             Vector3 currentForce = _forceAccumulator.PermanentForce;
             if (_forceUserData.IsGrounded && !currentForce.IsEnoughToMoveUp() && IsBigEnoughToReact(currentForce))

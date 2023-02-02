@@ -2,10 +2,11 @@ using UnityEngine;
 using WizardSpells.Data.Dynamic;
 using WizardSpells.Data.Static.Configuration.Environment;
 using WizardSpells.Features.Services.Force.Accumulators;
+using Zenject;
 
 namespace WizardSpells.Features.Services.Force.Generators.Environment
 {
-    public class GravityForceGenerator : IForceGenerator
+    public class GravityForceGenerator : ITickable
     {
         private readonly IEnvironmentConfig _environmentConfig;
         private readonly IPermanentForceAccumulator _forceAccumulator;
@@ -19,10 +20,10 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
             _forceUserData = forceUserData;
         }
 
-        public void GenerateForce(float deltaTime)
+        public void Tick()
         {
             if (!_forceUserData.IsGrounded)
-                GenerateGravityForce(deltaTime);
+                GenerateGravityForce(Time.deltaTime);
         }
 
         private void GenerateGravityForce(float deltaTime)

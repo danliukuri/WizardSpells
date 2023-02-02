@@ -2,10 +2,11 @@
 using WizardSpells.Data.Dynamic;
 using WizardSpells.Features.Services.Force.Accumulators;
 using WizardSpells.Features.Services.Force.MotionForce;
+using Zenject;
 
 namespace WizardSpells.Features.Services.Force.Generators.Environment
 {
-    public class StickingForceGenerator : IForceGenerator
+    public class StickingForceGenerator : ITickable
     {
         private readonly IPermanentForceAccumulator _forceAccumulator;
         private readonly ICharacterData _forceUserData;
@@ -16,7 +17,7 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
             _forceAccumulator = forceAccumulator;
         }
 
-        public void GenerateForce(float deltaTime)
+        public void Tick()
         {
             Vector3 currentForce = _forceAccumulator.PermanentForce;
             if (_forceUserData.IsGrounded && !currentForce.IsEnoughToMoveUp() && !IsEnoughToStayGrounded(currentForce))

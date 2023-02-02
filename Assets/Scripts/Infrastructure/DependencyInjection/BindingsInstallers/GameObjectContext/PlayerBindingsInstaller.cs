@@ -40,7 +40,6 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         private void BindPositionChangingServices()
         {
             BindMotionForceGenerators();
-            Container.BindInterfacesTo<ForceGeneratorsUpdater>().AsSingle();
             Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
 
             Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();

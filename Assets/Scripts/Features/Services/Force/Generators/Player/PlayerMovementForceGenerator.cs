@@ -3,10 +3,11 @@ using WizardSpells.Data.Static.Configuration.Player;
 using WizardSpells.Features.Services.Force.Accumulators;
 using WizardSpells.Infrastructure.Services.Input;
 using WizardSpells.Utilities.Extensions.Unity;
+using Zenject;
 
 namespace WizardSpells.Features.Services.Force.Generators.Player
 {
-    public class PlayerMovementForceGenerator : IForceGenerator
+    public class PlayerMovementForceGenerator : ITickable
     {
         private readonly IMovementInputService _movementInputService;
         private readonly IPlayerConfig _config;
@@ -20,11 +21,13 @@ namespace WizardSpells.Features.Services.Force.Generators.Player
             _forceAccumulator = instantForceAccumulator;
         }
 
-        public void GenerateForce(float deltaTime)
+        public void Tick()
         {
             if (_movementInputService.HasInput)
-                _forceAccumulator.AccumulateInstantForce(CalculateMovementForce());
+                GenerateMovementForce();
         }
+
+        private void GenerateMovementForce() => _forceAccumulator.AccumulateInstantForce(CalculateMovementForce());
 
         private Vector3 CalculateMovementForce() => _config.MovementSpeed * _movementInputService.GetInput().AsXZ();
     }
