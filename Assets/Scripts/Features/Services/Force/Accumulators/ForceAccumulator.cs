@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
-using WizardSpells.Features.Services.Force.Accumulators;
+using WizardSpells.Features.Services.Force.Providers;
 
-namespace WizardSpells.Features.Services.Force.MotionForce
+namespace WizardSpells.Features.Services.Force.Accumulators
 {
-    public class MotionForceAccumulator : IInstantForceAccumulator, IPermanentForceAccumulator, IMotionForceProvider
+    public class ForceAccumulator : IInstantForceAccumulator, IPermanentForceAccumulator, IForceProvider
     {
         private Vector3 _instantForce;
         private Vector3 _permanentForce;
 
-        public event Action MotionForceChanged;
+        public event Action ForceChanged;
         
-        public Vector3 GetMotionForce()
+        public Vector3 GetForce()
         {
             Vector3 moveForce = _permanentForce + _instantForce;
             _instantForce = Vector3.zero;
@@ -27,13 +27,13 @@ namespace WizardSpells.Features.Services.Force.MotionForce
             _permanentForce.x += x;
             _permanentForce.y += y;
             _permanentForce.z += z;
-            MotionForceChanged?.Invoke();
+            ForceChanged?.Invoke();
         }
 
         public void AccumulateInstantForce(Vector3 force)
         {
             _instantForce += force;
-            MotionForceChanged?.Invoke();
+            ForceChanged?.Invoke();
         }
     }
 }

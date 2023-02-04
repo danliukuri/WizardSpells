@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using WizardSpells.Data.Dynamic;
-using WizardSpells.Features.Services.Force.MotionForce;
+using WizardSpells.Features.Services.Force.Providers;
 using WizardSpells.Features.Services.Transformation;
 using WizardSpells.Tests.Utilities.Common.Extensions;
 
@@ -16,7 +16,7 @@ namespace WizardSpells.Tests.Utilities.Features.Services.Transformation
                 .MakeGrounded();
 
         public static PositionChanger PositionChanger(CharacterController characterController = default,
-            IGroundableObjectData data = default, IMotionForceProvider motionForceProvider = default) =>
+            IGroundableObjectData data = default, IForceProvider motionForceProvider = default) =>
             new(characterController ? characterController : CharacterController(),
                 data.SubstituteIfDefault(), motionForceProvider.SubstituteIfDefault());
     }

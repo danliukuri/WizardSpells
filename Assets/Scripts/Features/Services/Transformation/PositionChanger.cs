@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using WizardSpells.Data.Dynamic;
-using WizardSpells.Features.Services.Force.MotionForce;
+using WizardSpells.Features.Services.Force.Providers;
 using Zenject;
 
 namespace WizardSpells.Features.Services.Transformation
@@ -10,26 +10,26 @@ namespace WizardSpells.Features.Services.Transformation
     {
         private readonly CharacterController _characterController;
         private readonly IGroundableObjectData _data;
-        private readonly IMotionForceProvider _motionForceProvider;
+        private readonly IForceProvider _motionForceProvider;
 
         private bool _isNeededToChangePosition;
 
         public PositionChanger(CharacterController characterController, IGroundableObjectData data,
-            IMotionForceProvider motionForceProvider)
+            IForceProvider motionForceProvider)
         {
             _characterController = characterController;
             _data = data;
             _motionForceProvider = motionForceProvider;
         }
 
-        public void Initialize() => _motionForceProvider.MotionForceChanged += ChangePositionNextFrame;
+        public void Initialize() => _motionForceProvider.ForceChanged += ChangePositionNextFrame;
 
-        public void Dispose() => _motionForceProvider.MotionForceChanged -= ChangePositionNextFrame;
+        public void Dispose() => _motionForceProvider.ForceChanged -= ChangePositionNextFrame;
 
         public void Tick()
         {
             if (_isNeededToChangePosition)
-                ChangePosition(_motionForceProvider.GetMotionForce() * Time.deltaTime);
+                ChangePosition(_motionForceProvider.GetForce() * Time.deltaTime);
         }
 
         private void ChangePositionNextFrame() => _isNeededToChangePosition = true;

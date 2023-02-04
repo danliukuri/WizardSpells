@@ -1,9 +1,9 @@
 using UnityEngine;
 using WizardSpells.Data.Dynamic.Player;
 using WizardSpells.Data.Static.Configuration.Player;
+using WizardSpells.Features.Services.Force.Accumulators;
 using WizardSpells.Features.Services.Force.Generators.Environment;
 using WizardSpells.Features.Services.Force.Generators.Player;
-using WizardSpells.Features.Services.Force.MotionForce;
 using WizardSpells.Features.Services.Transformation;
 using WizardSpells.Infrastructure.Services.Input.Player;
 using Zenject;
@@ -49,7 +49,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         private void BindPositionChangingServices()
         {
             BindMotionForceGenerators();
-            Container.BindInterfacesTo<MotionForceAccumulator>().AsSingle();
+            Container.BindInterfacesTo<ForceAccumulator>().AsSingle();
 
             Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesTo<PositionChanger>().AsSingle();
