@@ -10,10 +10,10 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
     {
         private readonly IEnvironmentConfig _environmentConfig;
         private readonly IPermanentForceAccumulator _forceAccumulator;
-        private readonly ICharacterData _forceUserData;
+        private readonly IGroundableObjectData _forceUserData;
 
         public GravityForceGenerator(IEnvironmentConfig environmentConfig, IPermanentForceAccumulator forceAccumulator,
-            ICharacterData forceUserData)
+            IGroundableObjectData forceUserData)
         {
             _environmentConfig = environmentConfig;
             _forceAccumulator = forceAccumulator;

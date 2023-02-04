@@ -2,7 +2,7 @@ using System;
 
 namespace WizardSpells.Data.Dynamic.Player
 {
-    public class PlayerData : ICharacterData
+    public class PlayerData : IContactableObjectData
     {
         private bool _isGrounded;
 
@@ -19,7 +19,7 @@ namespace WizardSpells.Data.Dynamic.Player
             }
         }
 
-        public float ColliderContactOffset { get; set; }
+        public float ContactOffset { get; set; }
         public event Action Grounded;
     }
 }

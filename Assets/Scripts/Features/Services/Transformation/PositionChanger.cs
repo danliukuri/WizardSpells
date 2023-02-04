@@ -9,12 +9,12 @@ namespace WizardSpells.Features.Services.Transformation
     public class PositionChanger : IInitializable, IDisposable, ITickable
     {
         private readonly CharacterController _characterController;
-        private readonly ICharacterData _data;
+        private readonly IContactableObjectData _data;
         private readonly IMotionForceProvider _motionForceProvider;
 
         private bool _isNeededToChangePosition;
 
-        public PositionChanger(CharacterController characterController, ICharacterData data,
+        public PositionChanger(CharacterController characterController, IContactableObjectData data,
             IMotionForceProvider motionForceProvider)
         {
             _characterController = characterController;
@@ -24,7 +24,7 @@ namespace WizardSpells.Features.Services.Transformation
 
         public void Initialize()
         {
-            _data.ColliderContactOffset = _characterController.contactOffset;
+            _data.ContactOffset = _characterController.contactOffset;
             _motionForceProvider.MotionForceChanged += ChangePositionNextFrame;
         }
 

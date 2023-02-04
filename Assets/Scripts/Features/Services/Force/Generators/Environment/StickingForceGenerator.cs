@@ -9,9 +9,9 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
     public class StickingForceGenerator : IInitializable, IDisposable
     {
         private readonly IPermanentForceAccumulator _forceAccumulator;
-        private readonly ICharacterData _forceUserData;
+        private readonly IContactableObjectData _forceUserData;
 
-        public StickingForceGenerator(IPermanentForceAccumulator forceAccumulator, ICharacterData forceUserData)
+        public StickingForceGenerator(IPermanentForceAccumulator forceAccumulator, IContactableObjectData forceUserData)
         {
             _forceAccumulator = forceAccumulator;
             _forceUserData = forceUserData;
@@ -20,8 +20,7 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
         public void Initialize() => _forceUserData.Grounded += GenerateStickingForceIfNeeded;
         public void Dispose() => _forceUserData.Grounded -= GenerateStickingForceIfNeeded;
 
-        private bool IsEnoughToStayGrounded(Vector3 motionForce) =>
-            motionForce.y <= -_forceUserData.ColliderContactOffset;
+        private bool IsEnoughToStayGrounded(Vector3 motionForce) => motionForce.y <= -_forceUserData.ContactOffset;
 
         private void GenerateStickingForceIfNeeded()
         {
@@ -30,6 +29,6 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
         }
 
         private void GenerateStickingForce() =>
-            _forceAccumulator.AccumulatePermanentForce(Vector3.down * _forceUserData.ColliderContactOffset);
+            _forceAccumulator.AccumulatePermanentForce(Vector3.down * _forceUserData.ContactOffset);
     }
 }

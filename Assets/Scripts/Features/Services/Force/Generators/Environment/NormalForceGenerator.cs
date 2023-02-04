@@ -12,9 +12,9 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
     public class NormalForceGenerator : IInitializable, IDisposable
     {
         private readonly IPermanentForceAccumulator _forceAccumulator;
-        private readonly ICharacterData _forceUserData;
+        private readonly IContactableObjectData _forceUserData;
 
-        public NormalForceGenerator(IPermanentForceAccumulator forceAccumulator, ICharacterData forceUserData)
+        public NormalForceGenerator(IPermanentForceAccumulator forceAccumulator, IContactableObjectData forceUserData)
         {
             _forceAccumulator = forceAccumulator;
             _forceUserData = forceUserData;
@@ -23,8 +23,7 @@ namespace WizardSpells.Features.Services.Force.Generators.Environment
         public void Initialize() => _forceUserData.Grounded += GenerateNormalForceIfNeeded;
         public void Dispose() => _forceUserData.Grounded -= GenerateNormalForceIfNeeded;
 
-        private bool IsBigEnoughToReact(Vector3 motionForce) =>
-            Mathf.Abs(motionForce.y) > _forceUserData.ColliderContactOffset;
+        private bool IsBigEnoughToReact(Vector3 motionForce) => Mathf.Abs(motionForce.y) > _forceUserData.ContactOffset;
 
         private void GenerateNormalForceIfNeeded()
         {

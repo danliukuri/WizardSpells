@@ -12,10 +12,10 @@ namespace WizardSpells.Features.Services.Force.Generators.Player
         private readonly IJumpingInputService _jumpingInputService;
         private readonly IPlayerConfig _config;
         private readonly IPermanentForceAccumulator _forceAccumulator;
-        private readonly ICharacterData _forceUserData;
+        private readonly IGroundableObjectData _forceUserData;
 
         public PlayerJumpForceGenerator(IJumpingInputService jumpingInputService, IPlayerConfig config,
-            IPermanentForceAccumulator forceAccumulator, ICharacterData forceUserData)
+            IPermanentForceAccumulator forceAccumulator, IGroundableObjectData forceUserData)
         {
             _jumpingInputService = jumpingInputService;
             _config = config;

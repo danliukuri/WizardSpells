@@ -5,11 +5,13 @@ namespace WizardSpells.Tests.Utilities.Features.Services.Transformation
 {
     public static class Substitute
     {
-        public static ICharacterData CharacterData(bool isGrounded = false)
+        public static IContactableObjectData ContactableObjectData(bool isGrounded = default,
+            float contactOffset = default)
         {
-            var characterData = NSubstitute.Substitute.For<ICharacterData>();
-            characterData.IsGrounded.Returns(isGrounded);
-            return characterData;
+            var contactableObjectData = NSubstitute.Substitute.For<IContactableObjectData>();
+            contactableObjectData.IsGrounded.Returns(isGrounded);
+            contactableObjectData.ContactOffset.Returns(contactOffset);
+            return contactableObjectData;
         }
     }
 }
