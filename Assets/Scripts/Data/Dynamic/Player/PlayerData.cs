@@ -6,6 +6,11 @@ namespace WizardSpells.Data.Dynamic.Player
     {
         private bool _isGrounded;
 
+        public PlayerData(float contactOffset) => ContactOffset = contactOffset;
+
+        public float ContactOffset { get; set; }
+        public event Action Grounded;
+
         public bool IsGrounded
         {
             get => _isGrounded;
@@ -18,8 +23,5 @@ namespace WizardSpells.Data.Dynamic.Player
                     Grounded?.Invoke();
             }
         }
-
-        public float ContactOffset { get; set; }
-        public event Action Grounded;
     }
 }

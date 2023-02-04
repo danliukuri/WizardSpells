@@ -1,7 +1,6 @@
 using UnityEngine;
 using WizardSpells.Data.Dynamic.Player;
 using WizardSpells.Data.Static.Configuration.Player;
-using WizardSpells.Features.Services.Force.Generators;
 using WizardSpells.Features.Services.Force.Generators.Environment;
 using WizardSpells.Features.Services.Force.Generators.Player;
 using WizardSpells.Features.Services.Force.MotionForce;
@@ -19,7 +18,7 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         public override void InstallBindings()
         {
             BindConfiguration();
-            Container.BindInterfacesTo<PlayerData>().AsSingle();
+            BindData();
 
             BindInputServices();
             BindPositionChangingServices();
@@ -29,6 +28,16 @@ namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.Gam
         {
             Container.BindInterfacesTo<InputActionsConfig>().FromScriptableObject(inputActionsConfig).AsSingle();
             Container.BindInterfacesTo<PlayerConfig>().FromScriptableObject(playerConfig).AsSingle();
+        }
+
+        private void BindData()
+        {
+            Container
+                .Bind<float>()
+                .FromMethod(context => context.Container.Resolve<CharacterController>().contactOffset)
+                .WhenInjectedInto<PlayerData>();
+            
+            Container.BindInterfacesTo<PlayerData>().AsSingle();
         }
 
         private void BindInputServices()

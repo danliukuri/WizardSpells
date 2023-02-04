@@ -25,15 +25,15 @@ namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
         {
             // Arrange
             CharacterController characterController = Create.GroundedCharacterController();
-            IContactableObjectData contactableObjectData =
-                Substitute.ContactableObjectData(characterController.isGrounded);
-            PositionChanger positionChanger = Create.PositionChanger(characterController, contactableObjectData);
+            IGroundableObjectData groundableObjectData =
+                Substitute.GroundableObjectData(characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.down);
 
             // Assert
-            contactableObjectData.IsGrounded.Should().BeTrue();
+            groundableObjectData.IsGrounded.Should().BeTrue();
         }
 
         [Test]
@@ -41,43 +41,43 @@ namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
         {
             // Arrange
             CharacterController characterController = Create.GroundedCharacterController();
-            IContactableObjectData contactableObjectData =
-                Substitute.ContactableObjectData(characterController.isGrounded);
-            PositionChanger positionChanger = Create.PositionChanger(characterController, contactableObjectData);
+            IGroundableObjectData groundableObjectData =
+                Substitute.GroundableObjectData(characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.up);
 
             // Assert
-            contactableObjectData.IsGrounded.Should().BeFalse();
+            groundableObjectData.IsGrounded.Should().BeFalse();
         }
 
         [Test]
         public void WhenChangePosition_AndObjectIsNotGrounded_AndMotionForceIsDown_ThenObjectShouldNotBeGrounded()
         {
             // Arrange
-            IContactableObjectData contactableObjectData = Substitute.ContactableObjectData();
-            PositionChanger positionChanger = Create.PositionChanger(default, contactableObjectData);
+            IGroundableObjectData groundableObjectData = Substitute.GroundableObjectData();
+            PositionChanger positionChanger = Create.PositionChanger(default, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.down);
 
             // Assert
-            contactableObjectData.IsGrounded.Should().BeFalse();
+            groundableObjectData.IsGrounded.Should().BeFalse();
         }
 
         [Test]
         public void WhenChangePosition_AndObjectIsNotGrounded_AndMotionForceIsUp_ThenObjectShouldNotBeGrounded()
         {
             // Arrange
-            IContactableObjectData contactableObjectData = Substitute.ContactableObjectData();
-            PositionChanger positionChanger = Create.PositionChanger(default, contactableObjectData);
+            IGroundableObjectData groundableObjectData = Substitute.GroundableObjectData();
+            PositionChanger positionChanger = Create.PositionChanger(default, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.up);
 
             // Assert
-            contactableObjectData.IsGrounded.Should().BeFalse();
+            groundableObjectData.IsGrounded.Should().BeFalse();
         }
     }
 }

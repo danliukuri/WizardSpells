@@ -16,7 +16,7 @@ namespace WizardSpells.Tests.Utilities.Features.Services.Transformation
                 .MakeGrounded();
 
         public static PositionChanger PositionChanger(CharacterController characterController = default,
-            IContactableObjectData data = default, IMotionForceProvider motionForceProvider = default) =>
+            IGroundableObjectData data = default, IMotionForceProvider motionForceProvider = default) =>
             new(characterController ? characterController : CharacterController(),
                 data.SubstituteIfDefault(), motionForceProvider.SubstituteIfDefault());
     }
