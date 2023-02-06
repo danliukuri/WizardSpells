@@ -1,33 +1,35 @@
-﻿using System.Collections;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using WizardSpells.Data.Dynamic;
 using WizardSpells.Features.Services.Transformation;
 using WizardSpells.Tests.Utilities.Features.Services.Transformation;
+using Create = WizardSpells.Tests.Utilities.Features.Services.Transformation.Create;
 
-namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
+namespace WizardSpells.Tests.EditMode.Features.Services.Transformation
 {
     public class PositionChangerTests
     {
-        [UnityTearDown]
-        public IEnumerator TearDown()
+        private CharacterController _characterController;
+        
+        [OneTimeSetUp]
+        public void CreateGameObjects()
         {
-            GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
-            foreach (GameObject gameObject in gameObjects)
-                Object.Destroy(gameObject);
-            yield return new WaitForEndOfFrame();
+            Utilities.Common.Create.Ground();
+            _characterController = Create.CharacterController();
         }
+
+        [SetUp]
+        public void ResetGameObjects() => _characterController.transform.position = default;
 
         [Test]
         public void WhenChangePosition_AndObjectIsGrounded_AndMotionForceIsDown_ThenObjectShouldBeGrounded()
         {
             // Arrange
-            CharacterController characterController = Create.GroundedCharacterController();
+            _characterController.MakeGrounded();
             IGroundableObjectData groundableObjectData =
-                Substitute.GroundableObjectData(characterController.isGrounded);
-            PositionChanger positionChanger = Create.PositionChanger(characterController, groundableObjectData);
+                Substitute.GroundableObjectData(_characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(_characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.down);
@@ -40,10 +42,10 @@ namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
         public void WhenChangePosition_AndObjectIsGrounded_AndMotionForceIsUp_ThenObjectShouldNotBeGrounded()
         {
             // Arrange
-            CharacterController characterController = Create.GroundedCharacterController();
+            _characterController.MakeGrounded();
             IGroundableObjectData groundableObjectData =
-                Substitute.GroundableObjectData(characterController.isGrounded);
-            PositionChanger positionChanger = Create.PositionChanger(characterController, groundableObjectData);
+                Substitute.GroundableObjectData(_characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(_characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.up);
@@ -56,8 +58,10 @@ namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
         public void WhenChangePosition_AndObjectIsNotGrounded_AndMotionForceIsDown_ThenObjectShouldNotBeGrounded()
         {
             // Arrange
-            IGroundableObjectData groundableObjectData = Substitute.GroundableObjectData();
-            PositionChanger positionChanger = Create.PositionChanger(default, groundableObjectData);
+            _characterController.MakeUngrounded();
+            IGroundableObjectData groundableObjectData =
+                Substitute.GroundableObjectData(_characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(_characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.down);
@@ -70,8 +74,10 @@ namespace WizardSpells.Tests.PlayMode.Features.Services.Transformation
         public void WhenChangePosition_AndObjectIsNotGrounded_AndMotionForceIsUp_ThenObjectShouldNotBeGrounded()
         {
             // Arrange
-            IGroundableObjectData groundableObjectData = Substitute.GroundableObjectData();
-            PositionChanger positionChanger = Create.PositionChanger(default, groundableObjectData);
+            _characterController.MakeUngrounded();
+            IGroundableObjectData groundableObjectData = 
+                Substitute.GroundableObjectData(_characterController.isGrounded);
+            PositionChanger positionChanger = Create.PositionChanger(_characterController, groundableObjectData);
 
             // Act
             positionChanger.ChangePosition(Vector3.up);

@@ -6,14 +6,13 @@ namespace WizardSpells.Tests.Utilities.Features.Services.Transformation
     {
         public static CharacterController MakeGrounded(this CharacterController characterController)
         {
-            characterController.Move(Vector3.down * characterController.stepOffset);
+            characterController.Move(Vector3.down * characterController.contactOffset);
             return characterController;
         }
-
-        public static T PlaceAbove<T>(this T component, GameObject gameObject) where T : Component
+        public static CharacterController MakeUngrounded(this CharacterController characterController)
         {
-            component.transform.position = gameObject.transform.position + Vector3.up;
-            return component;
+            characterController.Move(Vector3.up * characterController.contactOffset);
+            return characterController;
         }
     }
 }

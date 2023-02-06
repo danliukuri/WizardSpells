@@ -11,10 +11,6 @@ namespace WizardSpells.Tests.Utilities.Features.Services.Transformation
         public static CharacterController CharacterController(GameObject gameObject = default) =>
             gameObject.NewIfDefault().AddIfMissing<CharacterController>();
 
-        public static CharacterController GroundedCharacterController(GameObject ground = default) =>
-            CharacterController().PlaceAbove(ground ? ground : Common.Create.Ground())
-                .MakeGrounded();
-
         public static PositionChanger PositionChanger(CharacterController characterController = default,
             IGroundableObjectData data = default, IForceProvider motionForceProvider = default) =>
             new(characterController ? characterController : CharacterController(),
