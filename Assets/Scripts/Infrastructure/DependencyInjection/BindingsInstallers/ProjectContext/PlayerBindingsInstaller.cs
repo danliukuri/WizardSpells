@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
-using WizardSpells.Data.Configuration;
+using WizardSpells.Data.Static.Configuration;
 using WizardSpells.Features.Player;
 using WizardSpells.Infrastructure.Factories.Components;
 using Zenject;

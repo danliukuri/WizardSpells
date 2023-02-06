@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using WizardSpells.Data.Configuration;
+using WizardSpells.Data.Static.Configuration;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.Factories.Components

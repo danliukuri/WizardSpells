@@ -2,7 +2,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
 using WizardSpells.Infrastructure.Factories.Components;
-using WizardSpells.Tests.EditMode.TestUtilities;
+using WizardSpells.Tests.Utilities.Infrastructure.Factories.Components;
 using Zenject;
 
 namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
@@ -37,7 +37,7 @@ namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
             float randomValue = Random.value;
             Container.BindInstance(randomValue).WhenInjectedInto<TestObject>();
 
-            GameObject originalGameObject = Create.GameObject(typeof(TestObject));
+            GameObject originalGameObject = Utilities.Common.Create.GameObject(typeof(TestObject));
             DependentComponentFactory<TestObject> factory =
                 Create.DependentComponentFactory<TestObject>(originalGameObject, Container);
 
@@ -46,11 +46,6 @@ namespace WizardSpells.Tests.EditMode.Infrastructure.Factories.Components
 
             // Assert
             injectedRandomFloatValue.Should().Be(randomValue);
-        }
-
-        private class TestObject : MonoBehaviour
-        {
-            [Inject] public float FloatValue { get; }
         }
     }
 }

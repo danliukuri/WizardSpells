@@ -1,5 +1,5 @@
 using UnityEngine;
-using WizardSpells.Data.Configuration;
+using WizardSpells.Data.Static.Configuration;
 using WizardSpells.Utilities.Extensions.Unity;
 using Zenject;
 

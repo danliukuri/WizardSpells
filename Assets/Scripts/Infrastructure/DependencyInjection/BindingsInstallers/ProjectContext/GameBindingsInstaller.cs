@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WizardSpells.Data.Scene;
-using WizardSpells.Infrastructure.GameStates;
-using WizardSpells.Infrastructure.GameStates.InitialSettingStrategies;
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Architecture.GameStates;
+using WizardSpells.Architecture.GameStates.InitialSettingStrategies;
+using WizardSpells.Data.Static.Enumerations.Scene;
+using WizardSpells.Infrastructure.Services.Scene;
 using WizardSpells.Utilities.Patterns.State.Machines;
 using WizardSpells.Utilities.Patterns.Strategy;
 using Zenject;

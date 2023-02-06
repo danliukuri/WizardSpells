@@ -1,6 +1,3 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Publish Tests Dependencies" type="DotNetFolderPublish" factoryName="Publish to folder">
-    <riderPublish configuration="Release" platform="Any CPU" runtime="win-x64" target_folder="$PROJECT_DIR$/../Tests/Dependencies" target_framework="netstandard2.0" uuid_high="1465186004739178539" uuid_low="-4802736939053275875" />
-    <method v="2" />
-  </configuration>
-</component>
+version https://git-lfs.github.com/spec/v1
+oid sha256:47e1ee1aebb7c944a9198dd11a7a6040342e1ad42c42f6a55b026b9c09eb9515
+size 490

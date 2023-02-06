@@ -1,4 +1,4 @@
-using WizardSpells.Services.SceneManagement;
+using WizardSpells.Infrastructure.Services.Scene;
 using Zenject;
 
 namespace WizardSpells.Infrastructure.DependencyInjection.BindingsInstallers.ProjectContext
